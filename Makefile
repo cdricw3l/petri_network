@@ -82,6 +82,16 @@ else ifeq ($(OS), Linux)
 	valgrind --leak-check=full --log-file=filename  -s ./test_unit
 endif
 
+git: fclean
+ifeq ($(gcom), $(EMPTY))
+	git add .
+	git commit -m $(NAME)/$(DATE)
+else
+	git add .
+	git commit -m $(NAME)/$(gcom)/$(DATE)
+endif
+	git push origin $(BRANCH)
+
 
 all: $(NAME)
 
